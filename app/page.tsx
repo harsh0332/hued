@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight, CornerDownRight } from "lucide-react";
 import ProcessSection from "@/components/home/ProcessSection";
+import InstagramFeed from "@/components/home/InstagramFeed";
 import { projects } from "@/lib/project-data";
 
 export default function Home() {
@@ -419,6 +420,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SECTION 08.5 — INSTAGRAM FEED SHOWROOM */}
+      <InstagramFeed />
 
       {/* SECTION 09 — TESTIMONIALS */}
       <section className="py-32 px-6 md:px-12 bg-bone border-t border-stone/10 relative">

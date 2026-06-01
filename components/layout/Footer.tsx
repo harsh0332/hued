@@ -80,10 +80,10 @@ export default function Footer() {
           <div>
             <h4 className="font-serif text-stone uppercase tracking-widest text-[10px] mb-4 font-bold">Follow</h4>
             <div className="flex flex-col space-y-2 font-sans font-light text-stone/70">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">Instagram</a>
+              <a href="https://instagram.com/hued.in_" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">Instagram</a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">LinkedIn</a>
               <a href="https://pinterest.com" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">Pinterest</a>
-              <a href="https://behance.net" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">Behance</a>
+              <a href="https://www.behance.net/kritikakhandel1" target="_blank" rel="noreferrer" className="hover:text-bone transition-colors duration-300">Behance</a>
             </div>
           </div>
         </div>
