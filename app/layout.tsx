@@ -73,6 +73,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preload" href="/video.mp4" as="video" type="video/mp4" />
+      </head>
       <body className="bg-bone text-charcoal min-h-full flex flex-col relative overflow-x-hidden selection:bg-sand/65 selection:text-charcoal">
         <SmoothScroll>
           <CustomCursor />

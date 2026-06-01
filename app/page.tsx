@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,6 +10,23 @@ import InstagramFeed from "@/components/home/InstagramFeed";
 import { projects } from "@/lib/project-data";
 
 export default function Home() {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [lowConnection, setLowConnection] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Network adaptation check
+    if (typeof window !== "undefined") {
+      const nav = navigator as any;
+      if (nav.connection) {
+        const conn = nav.connection;
+        if (conn.saveData || ["slow-2g", "2g", "3g"].includes(conn.effectiveType)) {
+          setLowConnection(true);
+        }
+      }
+    }
+  }, []);
+
   // We showcase House of Whites, Prana, Veda, and Paras in Featured Projects
   const featuredSlugs = ["house-of-whites", "prana", "veda-hotel", "paras-abhushan-bhandar"];
   const featuredProjects = projects.filter((p) => featuredSlugs.includes(p.slug));
@@ -37,27 +55,53 @@ export default function Home() {
   return (
     <div className="relative w-full">
       {/* SECTION 01 — HERO */}
-      <section className="relative min-h-[92vh] flex flex-col justify-between pt-12 pb-16 px-6 md:px-12 overflow-hidden bg-bone">
-        {/* Cinematic Background Image (House of Whites layout image) */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/projects/house-of-whites/house-of-whites_4_1.png"
-            alt="HUED Architecture Cinematic Background"
-            fill
-            className="object-cover opacity-[0.22] scale-105 filter saturate-50 blur-[2px] md:blur-0"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-bone via-bone/60 to-transparent" />
+      <section className="relative min-h-[92vh] md:min-h-screen flex flex-col justify-between pt-12 pb-16 px-6 md:px-12 overflow-hidden bg-bone">
+        {/* Cinematic Video or Fallback Image Background */}
+        <div className="absolute inset-0 z-0 bg-charcoal">
+          {!lowConnection ? (
+            <motion.video
+              ref={videoRef}
+              src="/video.mp4"
+              autoPlay
+              muted
+              playsInline
+              loop
+              onPlay={() => setVideoLoaded(true)}
+              className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none object-[center_30%] md:object-center"
+              initial={{ opacity: 0, scale: 1.06 }}
+              animate={videoLoaded ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 1.06 }}
+              transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
+            />
+          ) : null}
+
+          {/* Graceful Fallback image (if network is slow or video failed to play) */}
+          <motion.div
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 1 }}
+            animate={videoLoaded ? { opacity: 0 } : { opacity: 0.55 }}
+            transition={{ duration: 1.2 }}
+          >
+            <Image
+              src="/hero-fallback.jpg"
+              alt="HUED Creative Platform Hero Fallback"
+              fill
+              className="object-cover object-[center_30%] md:object-center"
+              priority
+            />
+          </motion.div>
+
+          {/* Luxury Cinematic Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-charcoal/45 z-[1]" />
         </div>
 
         {/* Top Grid / Taglines */}
         <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mt-12 md:mt-20">
           <div className="flex items-center space-x-2 text-[10px] uppercase tracking-[0.3em] font-semibold text-terracotta">
             <span className="inline-block w-2 h-2 rounded-full bg-terracotta" />
-            <span>Indore · Delhi · Noida</span>
+            <span className="text-bone/85">Indore · Delhi · Noida</span>
           </div>
           <div className="hidden md:block" />
-          <div className="text-right text-[10px] uppercase tracking-[0.25em] text-stone/80 font-medium">
+          <div className="text-right text-[10px] uppercase tracking-[0.25em] text-sand/80 font-semibold">
             Creative Direction V1.0
           </div>
         </div>
@@ -65,12 +109,12 @@ export default function Home() {
         {/* Big Editorial Headline */}
         <div className="relative z-10 max-w-7xl mx-auto w-full my-auto flex flex-col items-start justify-center pt-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col select-none"
           >
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[110px] font-light leading-[0.95] tracking-tight text-charcoal">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[110px] font-light leading-[0.95] tracking-tight text-bone">
               Designing <br />
               <span className="italic font-normal text-terracotta">Meaningful</span> <br />
               Spaces.
@@ -80,8 +124,8 @@ export default function Home() {
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1 }}
-            className="font-sans text-xs md:text-sm uppercase tracking-[0.35em] text-stone mt-10 font-medium"
+            transition={{ delay: 0.7, duration: 1.2 }}
+            className="font-sans text-xs md:text-sm uppercase tracking-[0.35em] text-sand/90 mt-10 font-bold"
           >
             Architecture · Interiors · Objects · Experiences
           </motion.p>
@@ -89,7 +133,7 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <div className="relative z-10 max-w-7xl mx-auto w-full flex items-center justify-between">
-          <div className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal/50">
+          <div className="flex items-center space-x-3 text-[10px] uppercase tracking-[0.2em] font-semibold text-bone/60">
             <span>Explore</span>
             <motion.div
               animate={{ y: [0, 6, 0] }}
@@ -99,7 +143,7 @@ export default function Home() {
             </motion.div>
           </div>
           
-          <div className="hidden sm:block font-serif text-[11px] italic text-stone/60">
+          <div className="hidden sm:block font-serif text-[11px] italic text-sand/65">
             Timeless craft, emotional geometry.
           </div>
         </div>
