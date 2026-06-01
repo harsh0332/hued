@@ -1,10 +1,14 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { CornerDownRight, Plus } from "lucide-react";
+import { CornerDownRight } from "lucide-react";
 import { projects } from "@/lib/project-data";
+
+export const metadata: Metadata = {
+  title: "Architectural Monographs",
+  description:
+    "A chronological compilation of architectural monuments, luxury interior sanctuaries, custom objects, and sensory experiences shaped by HUED since 2022.",
+};
 
 export default function Projects() {
   return (

@@ -44,9 +44,10 @@ export default function ProcessSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only apply horizontal scroll on desktop
+    // Only apply horizontal scroll on desktop and when reduced-motion is not preferred
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.innerWidth < 768;
-    if (isMobile) return;
+    if (prefersReduced || isMobile) return;
 
     const scrollSection = scrollRef.current;
     const container = containerRef.current;

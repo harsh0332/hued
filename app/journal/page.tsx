@@ -1,7 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { CornerDownRight, ArrowRight } from "lucide-react";
+import { CornerDownRight } from "lucide-react";
+import SubscribeForm from "@/components/journal/SubscribeForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Design Journal",
+  description:
+    "Architectural observations, material studies, design essays, and insights into the creative philosophy shaping the works of HUED.",
+};
 
 export default function Journal() {
   const articles = [
@@ -44,13 +50,13 @@ export default function Journal() {
       {/* Glow */}
       <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sand/10 rounded-full filter blur-[120px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto animate-[fadeIn_1s_ease-out]">
         {/* Page Header */}
         <header className="mb-24 md:mb-32">
           <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-terracotta font-semibold block mb-4">
             Publications
           </span>
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light text-charcoal tracking-tight leading-[0.95] max-w-4xl">
+          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-light text-ink tracking-tight leading-[0.95] max-w-4xl">
             Design <span className="italic font-normal font-serif text-stone">Journal</span>
           </h1>
           <p className="font-sans text-xs md:text-sm text-stone/80 tracking-wider font-light mt-8 max-w-md leading-relaxed">
@@ -77,18 +83,18 @@ export default function Journal() {
                     </div>
                   </div>
                   
-                  <h2 className="font-serif text-2xl md:text-3xl font-light text-charcoal tracking-tight group-hover:text-terracotta transition-colors duration-300 leading-tight mb-4 max-w-2xl">
+                  <h2 className="font-serif text-2xl md:text-3xl font-light text-ink tracking-tight group-hover:text-terracotta transition-colors duration-300 leading-tight mb-4 max-w-2xl">
                     {art.title}
                   </h2>
                   
-                  <p className="font-sans text-sm font-light text-charcoal/60 leading-relaxed max-w-xl mb-6">
+                  <p className="font-sans text-sm font-light text-ink/60 leading-relaxed max-w-xl mb-6">
                     {art.excerpt}
                   </p>
                 </div>
 
                 <div>
                   <button 
-                    className="inline-flex items-center space-x-2 text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal border-b border-charcoal/30 pb-1 hover:border-terracotta hover:text-terracotta transition-all duration-300 cursor-pointer"
+                    className="inline-flex items-center space-x-2 text-[10px] uppercase tracking-[0.2em] font-semibold text-ink border-b border-ink/30 pb-1 hover:border-terracotta hover:text-terracotta transition-all duration-300 cursor-pointer"
                   >
                     <span>Read Full Essay</span>
                     <CornerDownRight size={12} />
@@ -101,32 +107,15 @@ export default function Journal() {
           {/* Editorial Sidebar */}
           <aside className="lg:col-span-4 lg:border-l lg:border-stone/20 lg:pl-12 flex flex-col space-y-12">
             <div>
-              <h4 className="font-serif text-sm uppercase tracking-wider text-charcoal font-bold mb-4">Subscribe</h4>
+              <h4 className="font-serif text-sm uppercase tracking-wider text-ink font-bold mb-4">Subscribe</h4>
               <p className="font-sans text-xs font-light text-stone leading-relaxed mb-6">
                 Receive curated quarterly essays on architectural philosophy, material sourcing, and studio milestones directly to your inbox.
               </p>
-              <form 
-                onSubmit={(e) => e.preventDefault()}
-                className="flex border-b border-stone/30 pb-2 relative"
-              >
-                <input 
-                  type="email" 
-                  placeholder="Your Email" 
-                  className="bg-transparent border-none text-xs font-sans font-light focus:outline-none w-full text-charcoal placeholder:text-stone/50"
-                  required
-                />
-                <button 
-                  type="submit" 
-                  className="text-stone hover:text-terracotta transition-colors duration-300 focus:outline-none cursor-pointer"
-                  aria-label="Submit email"
-                >
-                  <ArrowRight size={14} />
-                </button>
-              </form>
+              <SubscribeForm />
             </div>
 
             <div className="border-t border-stone/20 pt-8">
-              <h4 className="font-serif text-sm uppercase tracking-wider text-charcoal font-bold mb-4 font-serif">Curated Inspirations</h4>
+              <h4 className="font-serif text-sm uppercase tracking-wider text-ink font-bold mb-4 font-serif">Curated Inspirations</h4>
               <p className="font-sans text-xs italic text-stone/85 leading-relaxed">
                 "We shape our buildings; thereafter they shape us." <br />
                 <span className="not-italic uppercase tracking-widest text-[9px] text-stone font-bold mt-2 block">— Winston Churchill</span>

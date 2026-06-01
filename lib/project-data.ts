@@ -134,7 +134,7 @@ export const projects: Project[] = [
     location: "Shivpuri, M.P.",
     year: "2024",
     siteArea: "12,000 Sqft",
-    builtUpArea: "24,000 Sqft",
+    builtUpArea: "—",
     category: "Hospitality Architecture",
     story: "Situated as a striking landmark along the Shivpuri Highway, Veda is a boutique hotel that reimagines roadside hospitality. Blending a monumental, classical facade with modern, warm-toned interiors, the project welcomes travelers with a dramatic high-volume lobby, curved archways, and custom sculptural brass lights. Comprising stately guest suites, curated dining destinations, and an expansive ballroom opening onto landscaped gardens, the property is a peaceful, luxury retreat for weary travelers and grand events alike.",
     philosophy: "Hospitality is the art of storytelling through space. Veda was designed to evoke a sense of arrival and wonder, where classical geometry meets soft, modern textures, providing an exceptional and memorable journey.",

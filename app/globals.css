@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F7F4EF;
-  --foreground: #161616;
+  --background: #F4EFE6;
+  --foreground: #1A1714;
   
-  --bone: #F7F4EF;
-  --sand: #DDD3C5;
+  --bone: #F4EFE6;
+  --linen: #FAF7F1;
+  --travertine: #E6DCCB;
+  --sand: #D9CBB3;
   --stone: #B4A89A;
-  --terracotta: #A06A4B;
-  --charcoal: #161616;
-  --graphite: #2A2A2A;
+  --terracotta: #B5654A;
+  --clay: #8C4A33;
+  --ink: #1A1714;
+  --charcoal: #1A1714; /* fallback mapping */
+  --graphite: #403A33;
 }
 
 @theme {
@@ -17,20 +21,26 @@
   --color-foreground: var(--foreground);
   
   --color-bone: var(--bone);
+  --color-linen: var(--linen);
+  --color-travertine: var(--travertine);
   --color-sand: var(--sand);
   --color-stone: var(--stone);
   --color-terracotta: var(--terracotta);
+  --color-clay: var(--clay);
+  --color-ink: var(--ink);
   --color-charcoal: var(--charcoal);
   --color-graphite: var(--graphite);
 
-  --font-sans: var(--font-inter), sans-serif;
+  --font-sans: var(--font-hanken), sans-serif;
   --font-serif: var(--font-fraunces), serif;
+
+  --scale-102: 1.02;
 }
 
 body {
   background-color: var(--bone);
   color: var(--charcoal);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-hanken), sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -90,7 +90,7 @@ export default function Footer() {
 
         {/* Copyright and Back to Top */}
         <div className="flex items-center justify-between pt-8 text-[11px] tracking-wider text-stone/40 font-sans uppercase">
-          <p>© {new Date().getFullYear()} HUED Spaces. Handcrafted by Antigravity.</p>
+          <p>© {new Date().getFullYear()} HUED Spaces. All Rights Reserved.</p>
           
           <button
             onClick={scrollToTop}

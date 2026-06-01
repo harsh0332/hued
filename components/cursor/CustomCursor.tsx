@@ -17,9 +17,10 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Check if the user has a precise pointer device (like a mouse or trackpad)
+    // Check if the user has a precise pointer device and no reduced-motion preference
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    if (!hasFinePointer) return;
+    if (prefersReduced || !hasFinePointer) return;
 
     setIsVisible(true);
 

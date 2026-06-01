@@ -2,13 +2,21 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger since we sync it with Lenis
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Check if we are on a touch device, if so, we can disable or adjust smooth scroll
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    // Reduced motion system guard
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     
     const lenis = new Lenis({
       duration: isTouch ? 1.0 : 1.4,
@@ -22,17 +30,20 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     lenisRef.current = lenis;
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
+    // Connect Lenis scroll to GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
 
-    rafId = requestAnimationFrame(raf);
+    // Sync GSAP ticker with Lenis raf
+    const tick = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(tick);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tick);
       lenis.destroy();
+      ScrollTrigger.killAll();
     };
   }, []);
 

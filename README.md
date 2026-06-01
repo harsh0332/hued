@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HUED — Multidisciplinary Design & Architecture Studio
 
-## Getting Started
+A high-premium, international-caliber digital platform for **HUED** (Indore, India), founded in 2022 by **Ar. Kritika Khandelwal**. Built utilizing Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, GSAP, Framer Motion, and Lenis.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏛️ ARCHITECTURE & ISLANDS ROUTING
+
+The platform is designed following Next.js 16 App Router best practices, featuring a static-first, highly search-engine-optimized Server Component directory structure with client-side interactivity isolated into performance islands:
+
+```text
+├── app/
+│   ├── layout.tsx         # Pure Server Component - Injecting Org/LocalBusiness JSON-LD
+│   ├── page.tsx           # Pure Server Component - Home page
+│   ├── sitemap.ts         # Prerenders both static routes and all dynamic monographs
+│   ├── robots.ts          # Indexing robots configuration
+│   ├── template.tsx       # Lightweight Slide-Fade route page transitions
+│   ├── projects/
+│   │   ├── page.tsx       # Pure Server Component - Grid compilation
+│   │   └── [slug]/
+│   │       └── page.tsx   # Pure Server Component - SSG Monographs via generateStaticParams()
+│   ├── studio/
+│   │   └── page.tsx       # Pure Server Component - Studio story
+│   ├── journal/
+│   │   └── page.tsx       # Pure Server Component - Asymmetric design articles
+│   ├── contact/
+│   │   └── page.tsx       # Pure Server Component - Address details & Old Palasia Map
+├── components/
+│   ├── contact/
+│   │   └── ContactForm.tsx   # "use client" Island - Inquiry workflow & direct mail backup
+│   ├── cursor/
+│   │   └── CustomCursor.tsx  # "use client" Island - Contextual fine mouse indicator bailing on Touch
+│   ├── home/
+│   │   ├── HeroVideo.tsx     # "use client" Island - Connection-based lazy cinematic hero player
+│   │   └── ProcessSection.tsx# "use client" Island - GSAP horizontal methodology section
+│   ├── journal/
+│   │   └── SubscribeForm.tsx # "use client" Island - Newsletter submit form
+│   ├── motion/
+│   │   ├── RevealText.tsx    # "use client" Island - Scroll-triggered lines-masking text animator
+│   │   ├── ClipReveal.tsx    # "use client" Island - CSS clip-path inset scroll-triggered image revealer
+│   │   └── MagneticButton.tsx# "use client" Island - spring-interpolated magnetic CTA button wrapper
+│   └── scroll/
+│       └── SmoothScroll.tsx  # "use client" Island - Lenis scroll engine hooked to GSAP ticker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 PREMIUM ARCHITECTURAL DESIGN SYSTEM
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Styles are defined in `app/globals.css` utilizing warm travertine tones and geometric, restrained proportions inspired by Snøhetta and Olson Kundig:
 
-## Learn More
+```css
+--bone:        #F4EFE6;  /* Ultra-warm Travertine background */
+--linen:       #FAF7F1;  /* Pristine elevated card surface */
+--travertine:  #E6DCCB;  /* Architectural section divisor */
+--sand:        #D9CBB3;  /* Smooth visual hover indications */
+--stone:       #B4A89A;  /* Muted captions and labels */
+--terracotta:  #B5654A;  /* Brand primary accent highlight */
+--clay:        #8C4A33;  /* Deep terracotta hover state */
+--ink:         #1A1714;  /* Rich, warm off-black primary typography */
+--graphite:    #403A33;  /* Muted secondary body text */
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Typography Configuration
+* **UI/Body**: Mapped to **Hanken Grotesk** (Next.js optimized geometric sans-serif) loaded with `display: 'optional'` to eliminate Cumulative Layout Shift (CLS).
+* **Display/Headlines**: Mapped to **Fraunces** display serif loaded with `display: 'swap'`, with weight ranges limited strictly to `["300", "400", "500"]` to minimize bundle load sizes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚡ AWWWARDS-GRADE MOTION & TRANSITIONS
 
-## Deploy on Vercel
+Animations are synchronized and guarded meticulously at system level to support modern web standards:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Lenis & GSAP synchronization**: Both scroll engines are bound directly through GSAP's central ticker inside `SmoothScroll.tsx` to prevent inertia battles or scrolling jitters.
+2. **System-level reduced motion guards**: Both `SmoothScroll` and `CustomCursor` completely bail out if `prefers-reduced-motion: reduce` or touch events are detected.
+3. **Pinning guards**: GSAP ScrollTrigger horizontal methodology pinning on the Home page automatically bails out on mobile viewports to prevent layout breakages.
+4. **Reveal Islands**:
+   * **`RevealText`**: Generates line-masks animating display text `yPercent: 110% -> 0%` using custom cubic-beziers.
+   * **`ClipReveal`**: Generates high-performance ScrollTrigger batch clip-path inset transformations (`clip-path: inset(0 0 100% 0)` -> `inset(0 0 0 0)`) for premium image entry animations.
+   * **`MagneticButton`**: Adds spring physics to CTA selectors following the cursor's coordinate vector.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔍 SEO & METADATA INFRASTRUCTURE
+
+* **JSON-LD Schema**:
+  * Root layout embeds Organization, LocalBusiness, and Founder (`Ar. Kritika Khandelwal`) details.
+  * Dynamic monograph routes inject standard CreativeWork schema structures.
+* **Dynamic Meta Tags**: Page metadata are automatically generated. Dynamically resolves `title`, trimmed `description` (exactly first 155 chars of project story), and open-graph cover images.
+* **Robots & Sitemap**: Pre-rendered sitemaps and search crawler instructions mapped securely via `sitemap.ts` and `robots.ts`.
+
+---
+
+## 🧹 FACTUAL INTEGRITY & PERFORMANCE CORRECTIONS
+
+* **Built-up corrections**: Rectified the built-up area of `veda-hotel` to `"—"` since it is not defined in the source PDF materials.
+* **Sanitized team grid**: Ankush and Shakti no longer share duplicate portraits. They are rendered as clean, high-premium minimalist travertine initial monograms, keeping real photo portraits exclusively for Ar. Kritika.
+* **Testimonials & Socials**: Removed all invented metric counters (likes/comments) from the showroom grid. Testimonials are reframed into clean, elegant, professional stubs.
+* **Video LCP Optimization**: Removed the heavy video pre-load tag from layout. Added a standard fallback poster attribute and connection speed triggers so the hero video is loaded dynamically only on fine viewports.
+* **Next.js optimized Image tags**: Replaced all direct `<img>` nodes with optimized `<Image>` tags with precise aspect sizes to ensure perfect Lighthouse scores.
+
+---
+
+## 🚀 VERIFICATION & DEVELOPMENT
+
+First, install dependencies:
+```bash
+npm install
+```
+
+Start the local development server (binds automatically to `3000` or fallback):
+```bash
+npm run dev
+```
+
+Build production static compilations:
+```bash
+npm run build
+```
+*(Bypasses Turbopack sandboxing issues by utilizing the robust Next.js Webpack production compiler).*
+
+Start the production server:
+```bash
+npm run start
+```
