@@ -69,7 +69,7 @@ export default function Home() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col select-none"
           >
-            <h1 className="font-serif text-6xl sm:text-8xl md:text-[110px] font-light leading-[0.95] tracking-tight text-charcoal">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[110px] font-light leading-[0.95] tracking-tight text-charcoal">
               Designing <br />
               <span className="italic font-normal text-terracotta">Meaningful</span> <br />
               Spaces.
