@@ -101,25 +101,36 @@ Animations are synchronized and guarded meticulously at system level to support 
 
 ---
 
-## 🚀 VERIFICATION & DEVELOPMENT
+## 🚀 DEVELOPMENT & DEPLOYMENT
 
-First, install dependencies:
+### Local Development
+
+First, install standard dependencies:
 ```bash
 npm install
 ```
 
-Start the local development server (binds automatically to `3000` or fallback):
+Start the local development server:
 ```bash
 npm run dev
 ```
 
-Build production static compilations:
+Build the optimized Next.js production bundle:
 ```bash
 npm run build
 ```
-*(Bypasses Turbopack sandboxing issues by utilizing the robust Next.js Webpack production compiler).*
 
-Start the production server:
+Start the production server locally:
 ```bash
 npm run start
 ```
+
+### Vercel Deployment
+
+This project is optimized for standard **Vercel** deployment:
+1. Push your latest code changes to your GitHub repository.
+2. Go to Vercel and import your repository.
+3. Vercel will automatically auto-detect **Next.js** as the framework.
+4. Set the build command to `next build`.
+5. Set `NEXT_PUBLIC_SITE_URL` in the Vercel Environment Variables.
+6. Click **Deploy**! Output and caching are managed automatically.

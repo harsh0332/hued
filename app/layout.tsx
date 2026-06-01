@@ -5,6 +5,8 @@ import SmoothScroll from "@/components/scroll/SmoothScroll";
 import CustomCursor from "@/components/cursor/CustomCursor";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const hanken = Hanken_Grotesk({
   variable: "--font-hanken",
@@ -133,6 +135,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </SmoothScroll>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
