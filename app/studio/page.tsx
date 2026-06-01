@@ -77,11 +77,10 @@ export default function Studio() {
           </div>
 
           <div className="lg:col-span-5 relative aspect-[3/4] overflow-hidden bg-sand/30 border border-stone/10 rounded-sm">
-            <Image
+            <img
               src="/team/team_18_1.png"
               alt="Ar. Kritika Khandelwal"
-              fill
-              className="object-cover saturate-[0.15] hover:saturate-[0.6] transition-all duration-[1.8s]"
+              className="w-full h-full object-cover saturate-[0.15] hover:saturate-[0.6] transition-all duration-[1.8s]"
             />
           </div>
         </section>

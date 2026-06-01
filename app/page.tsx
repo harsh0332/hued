@@ -330,12 +330,10 @@ export default function Home() {
           {/* Editorial Portrait */}
           <div className="lg:col-span-6 order-1 lg:order-2">
             <div className="relative aspect-[3/4] max-w-md mx-auto bg-sand/30 border border-stone/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.03)]">
-              <Image
+              <img
                 src="/team/team_18_1.png"
                 alt="Ar. Kritika Khandelwal - Founder of HUED"
-                fill
-                sizes="(max-w-768px) 100vw, 40vw"
-                className="object-cover saturate-[0.15] hover:saturate-[0.6] transition-all duration-[1.5s]"
+                className="w-full h-full object-cover saturate-[0.15] hover:saturate-[0.6] transition-all duration-[1.5s]"
               />
               {/* Artistic border frame */}
               <div className="absolute inset-4 border border-bone/30 pointer-events-none" />
@@ -370,11 +368,10 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="group flex flex-col">
               <div className="relative aspect-[3/4] bg-sand/30 overflow-hidden mb-4">
-                <Image
+                <img
                   src="/team/team_18_1.png"
                   alt="Ar. Kritika Khandelwal"
-                  fill
-                  className="object-cover saturate-0 group-hover:saturate-50 group-hover:scale-102 transition-all duration-700"
+                  className="w-full h-full object-cover saturate-0 group-hover:saturate-50 group-hover:scale-102 transition-all duration-700"
                 />
               </div>
               <h4 className="font-serif text-lg text-charcoal">Kritika Khandelwal</h4>
